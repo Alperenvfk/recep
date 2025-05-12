@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hızlı Tıkla Oyunu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      text-align: center;
+    }
+
+    #startScreen {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #startScreen button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 15px lime;
+    }
+
+    #gameScreen {
+      display: none;
+      height: 100vh;
+      position: relative;
+    }
+
+    #score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    #box {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="startScreen">
+    <button onclick="startGame()">bas lan butona Alperen babanız yaptı</button>
+  </div>
+
+  <div id="gameScreen">
+    <div id="score">Skor: 0</div>
+    <div id="box" onclick="increaseScore()"></div>
+  </div>
+
+  <script>
+    let score = 0;
+
+    function startGame() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("gameScreen").style.display = "block";
+      moveBox();
+    }
+
+    function increaseScore() {
+      score++;
+      document.getElementById("score").innerText = "Skor: " + score;
+      moveBox();
+    }
+
+    function moveBox() {
+      const box = document.getElementById("box");
+      const maxX = window.innerWidth - 60;
+      const maxY = window.innerHeight - 60;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      box.style.left = `${x}px`;
+      box.style.top = `${y}px`;
+    }
+  </script>
+
+</body>
+</html>
